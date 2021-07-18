@@ -312,7 +312,7 @@ function directive($window, $translate, toastr, AppUtil, EventManager, Permissio
                 }
 
                 function initLinkedNamespace(namespace) {
-                    if (!namespace.isPublic || !namespace.isLinkedNamespace || namespace.format != 'properties') {
+                    if (!namespace.isPublic || !namespace.isLinkedNamespace) {
                         return;
                     }
                     //load public namespace
@@ -320,6 +320,7 @@ function directive($window, $translate, toastr, AppUtil, EventManager, Permissio
                         namespace.baseInfo.namespaceName)
                         .then(function (result) {
                             var publicNamespace = result;
+                            console.log(publicNamespace);
                             namespace.publicNamespace = publicNamespace;
 
                             var linkNamespaceItemKeys = [];
