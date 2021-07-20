@@ -320,7 +320,6 @@ function directive($window, $translate, toastr, AppUtil, EventManager, Permissio
                         namespace.baseInfo.namespaceName)
                         .then(function (result) {
                             var publicNamespace = result;
-                            console.log(publicNamespace);
                             namespace.publicNamespace = publicNamespace;
 
                             var linkNamespaceItemKeys = [];
@@ -345,9 +344,15 @@ function directive($window, $translate, toastr, AppUtil, EventManager, Permissio
                                     publicNamespace.hasPublishedItem = true;
                                 }
                             });
-
+                            loadParentNamespaceText(namespace);
                         });
+                }
 
+                function loadParentNamespaceText(namespace){
+                    namespace.publicNamespaceText = "";
+                    if(namespace.isLinkedNamespace) {
+                        namespace.publicNamespaceText = parseModel2Text(namespace.publicNamespace)
+                    }
                 }
 
                 function initNamespaceViewName(namespace) {
